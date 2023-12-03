@@ -13,7 +13,7 @@ import java.time.Duration;
 import java.util.List;
 
 
-public class StandAlonTest {
+public class SubmitOrderTestDraft {
     public static void main(String[] args) {
         String productName = "ADIDAS ORIGINAL";
         WebDriver driver = new ChromeDriver();
@@ -22,7 +22,6 @@ public class StandAlonTest {
 
         driver.get("https://rahulshettyacademy.com/client/");
         driver.manage().window().maximize();
-
         driver.findElement(By.id("userEmail")).sendKeys("mail@example.com");
         driver.findElement(By.id("userPassword")).sendKeys("Abcd123+");
         driver.findElement(By.id("login")).click();
