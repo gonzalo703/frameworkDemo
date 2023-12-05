@@ -1,23 +1,26 @@
-package org.Gonzalo.Manzano;
+package org.Gonzalo.Manzano.Tests;
+
 
 import org.Gonzalo.Manzano.pageObjects.*;
+import org.Gonzalo.Manzano.TestComponents.BaseTest;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.Test;
 
-import java.time.Duration;
+
 import java.util.List;
 
 
-public class SubmitOrderTest {
-    public static void main(String[] args) {
-        String productName = "ADIDAS ORIGINAL";
-        WebDriver driver = new ChromeDriver();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
-        driver.manage().window().maximize();
-        LandingPage landingPage = new LandingPage(driver);
-        landingPage.goTo();
+public class SubmitOrderTest extends BaseTest {
+    String productName = "ADIDAS ORIGINAL";
+
+
+
+    @Test
+    public void submitOrder() {
+
+
         ProductCatalogue productCatalogue = landingPage.loginApplication("mail@example.com", "Abcd123+");
         List<WebElement> products = productCatalogue.getProductList();
         productCatalogue.addProductToCart(productName);
@@ -29,10 +32,15 @@ public class SubmitOrderTest {
         ConfirmationPage confirmationPage = checkOutPage.submitOrder();
         String confirmMessage = confirmationPage.getConfirmationMessage();
         Assert.assertTrue(confirmMessage.equalsIgnoreCase("Thankyou for the order."));
-        driver.quit();
-        driver.close();
 
 
+    }
+
+    @Test(dependsOnMethods = {"submitOrder"})
+    public void OrderHistoryTest() {
+        ProductCatalogue productCatalogue = landingPage.loginApplication("mail@example.com", "Abcd123+");
+        OrderPage orderPage = productCatalogue.goToOrderPage();
+        Assert.assertTrue(orderPage.verifyOrderDisplay(productName));
     }
 
 

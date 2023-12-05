@@ -1,4 +1,4 @@
-package org.Gonzalo.Manzano;
+package org.Gonzalo.Manzano.Tests;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

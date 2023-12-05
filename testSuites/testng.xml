@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <test name="Submit Order Test">
+        <classes>
+            <class name="org.Gonzalo.Manzano.Tests.SubmitOrderTest">
+                <methods>
+                    <include name="submitOrder"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+    <test name="Error validation Test">
+        <classes>
+            <class name="org.Gonzalo.Manzano.Tests.ErrorValidationsTest">
+                <methods>
+                    <include name="loginErrorValidation"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
